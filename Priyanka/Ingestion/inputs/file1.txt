@@ -1,0 +1,9 @@
+In the context of Vamana for diskANN search in Milvus, the parameters \( R \), \( L \), and \( \alpha \) have specific roles:
+
+1. **\( R \)** (Out-degree of each node): This parameter controls the number of edges (connections) each node in the graph has. A higher \( R \) generally increases the connectivity of the graph, which can lead to better recall rates at the expense of increased memory usage and longer indexing times.
+
+2. **\( L \)** (Candidate list size during search): This parameter determines the size of the candidate list maintained during the search process. A larger \( L \) increases the number of potential neighbors considered during search, which can improve search accuracy but also increases search time and memory usage.
+
+3. **\( \alpha \)** (Scaling factor): This parameter is used to adjust the expansion during the search phase. It scales the distance threshold for adding nodes to the candidate list, affecting the balance between recall and search efficiency. A higher \( \alpha \) allows for more aggressive expansion, which might improve recall but also increases the search time.
+
+These parameters control the trade-offs between search accuracy, speed, and memory usage. The choice of values for these parameters depends on the specific requirements of the application, such as whether you prioritize search speed or recall accuracy.

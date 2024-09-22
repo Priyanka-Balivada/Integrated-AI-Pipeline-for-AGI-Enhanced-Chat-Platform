@@ -1,0 +1,3 @@
+Automating Datadog Agent Installation on Red Hat and Windows Servers
+
+I streamlined the process of installing the Datadog Agent on Red Hat and Windows servers by automating SSM documentation on AWS Cloud. Previously, it took around 30 minutes to install the agent on each server. With this automation, the installation time has been significantly reduced to just 5-10 minutes across all servers (typically 10-15 servers). This improvement was included in the latest release of the project at Siemens, resulting in substantial time savings.
