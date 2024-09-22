@@ -7,3 +7,6 @@
   Send a query request to the API, which retrieves node-based results along with associated metadata.
 - Caching and Document Store:
   Implement caching mechanisms and utilize a document store to manage the data effectively.
+
+- https://jalammar.github.io/illustrated-transformer/
+- https://arxiv.org/abs/1706.03762
