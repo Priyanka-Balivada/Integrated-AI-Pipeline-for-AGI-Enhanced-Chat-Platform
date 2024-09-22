@@ -16,7 +16,7 @@
 - Sparse Vector Store and Retrieval (BM25): BM25 is a traditional sparse retrieval method based on term frequency and relevance. The task involves using BM25 to retrieve documents based on sparse representations of text.
 - Dense Vector Retrieval (SPLADE): SPLADE is a transformer-based model that generates sparse vectors but uses deep learning techniques to enhance retrieval performance. The task is to generate sparse vectors using SPLADE, store them in a vector store (like Milvus or FAISS), and use them for dense retrieval.
 - Combining BM25 and SPLADE for Hybrid Retrieval: The task requires combining results from BM25 (sparse retrieval) and SPLADE (dense retrieval) into a single result set. This could be done by merging, ranking, or using a weighted combination of the results from both retrieval methods.
-- https://milvus.io/docs/sparse_vector.md
 - Hybrid Retrieval Setup with BGE-M3 and SPLaDe-v2
 - BGE-M3 Model for Sparse Vectors: BGE-M3 is another model that can be used for sparse vector generation, typically for search or retrieval tasks. It requires storing these sparse vectors and retrieving relevant documents based on a query.
 - SPLaDe-v2 for Dense Representations: SPLaDe-v2 is an advanced model from Naver Labs that is focused on sparse-dense representations for efficient retrieval. It generates sparse vectors that can be stored in a vector database for fast retrieval.
+- https://milvus.io/docs/sparse_vector.md
