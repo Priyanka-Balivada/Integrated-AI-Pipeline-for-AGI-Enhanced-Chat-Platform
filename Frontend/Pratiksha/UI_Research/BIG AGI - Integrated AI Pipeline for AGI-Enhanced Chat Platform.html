@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>BIG AGI - Integrated AI Pipeline for AGI-Enhanced Chat Platform</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="111bce80-3ed7-807e-9f73-fa8d2183236a" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1684493735679-359868df0e18?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 10.79%"/><h1 class="page-title">BIG AGI - Integrated AI Pipeline for AGI-Enhanced Chat Platform</h1><p class="page-description"></p></header><div class="page-body"><p id="bea2c229-f77f-4818-90c3-b80e43fb5231" class=""><strong>Platforms Explored:</strong></p><ul id="aee22ac0-0230-479c-b6cf-a0dbb4a7d02f" class="bulleted-list"><li style="list-style-type:disc">Big AGI</li></ul><ul id="c8836c80-ff70-4840-9dac-d7f318a6570d" class="bulleted-list"><li style="list-style-type:disc">OpenChat</li></ul><ul id="22823ffb-3c21-4639-a729-a48579322341" class="bulleted-list"><li style="list-style-type:disc">Hugging Face | chat UI</li></ul><ul id="d70cd143-96ad-4201-be83-f65c044248e6" class="bulleted-list"><li style="list-style-type:disc">Open webUI</li></ul><p id="1928ac7b-5916-407d-9974-3a0bacfd3766" class="">
+</p><p id="111bce80-3ed7-8000-a8b7-e5265dbcc8e9" class="">1st September 2024 (Sunday)</p><h1 id="e3302640-149e-41ea-b66d-87a266748f7e" class="">Suggestions</h1><ul id="8d070a95-a54d-4f5a-b6d4-e1bca346356a" class="bulleted-list"><li style="list-style-type:disc">Minimal things should be displayed on the screen - Remove the larger number of components / icons </li></ul><ul id="d0d0966d-0da0-47b6-bd13-fe1920ad029e" class="bulleted-list"><li style="list-style-type:disc">Add a Settings option at the top-right corner and can implement the following into it:</li></ul><ul id="a10b5b3c-a62c-4ba4-9b14-0a648cf66831" class="toggle"><li><details open=""><summary>Settings</summary><p id="4f538def-5abf-4922-a244-0bf9388893c9" class="">General - theme, chat options (delete chat etc.)</p><p id="83d6f077-162c-4389-a54d-e4d07424b4a3" class="">Personalized or user profile - social accounts of the user can be lined here</p><p id="b687453a-f162-4e9c-9de4-372088415775" class="">Data Controls - Import and export chats</p><p id="4f99d6e0-1198-4e01-8839-4b047cdfab80" class="">Connect Apps </p><p id="d70741e9-9217-4022-8832-d63ba0aced38" class="">** Security</p><p id="ca7f0ef8-8d89-45ba-a796-959d714ac71d" class="">
+</p></details></li></ul><p id="111bce80-3ed7-8030-a07c-fa497441ac79" class="">
+</p><p id="111bce80-3ed7-8055-9716-ffecd98f4d6e" class="">29Th September 2024 (Sunday)</p><h3 id="29c455ef-4fd6-457a-a274-768a2e471589" class=""><strong>LICENSE</strong></h3><table id="ffc0c11f-8ac3-4d51-a9b8-ad78e08fab51" class="simple-table"><tbody><tr id="6b96f670-db95-492e-b27f-8e7b2660a316"><td id="@:hm" class=""><strong>Feature</strong></td><td id="gFK@" class=""><strong>MIT License</strong></td><td id="]dL&lt;" class=""><strong>Apache-2.0 License</strong></td></tr><tr id="085d16c7-6f41-46c9-8ed4-6307458fcb2b"><td id="@:hm" class=""><strong>Patent Protection</strong></td><td id="gFK@" class="">No explicit patent grant</td><td id="]dL&lt;" class="">Includes a patent file</td></tr><tr id="216e7b10-d674-4860-aa38-8fbec76f3e7d"><td id="@:hm" class=""><strong>Attribution Requirements</strong></td><td id="gFK@" class="">Required</td><td id="]dL&lt;" class="">Required, with a NOTICE file</td></tr><tr id="8fa9f3c9-cc79-4fa7-a56f-87f2aadc497f"><td id="@:hm" class=""><strong>Documentation of changes</strong></td><td id="gFK@" class="">Not required</td><td id="]dL&lt;" class="">Required in NOTICE file</td></tr><tr id="2624bab0-71da-4b40-99ca-46df360adccd"><td id="@:hm" class=""><strong>License Revocation</strong></td><td id="gFK@" class="">No</td><td id="]dL&lt;" class="">Revocable if patent litigation</td></tr></tbody></table><h3 id="dea61d11-2ca9-4f05-b86d-a423a0c6573c" class=""><strong>MIT License:</strong></h3><ul id="a98ca6a5-e451-4237-ba93-53f6c055a8f5" class="bulleted-list"><li style="list-style-type:disc"><strong>You can</strong>:<ul id="0dedaae3-a842-4f94-a558-960479f61e01" class="bulleted-list"><li style="list-style-type:circle">Freely use, modify, and distribute the code.</li></ul><ul id="fd4ab469-377e-455d-9113-47e9c3de4fab" class="bulleted-list"><li style="list-style-type:circle">Push your modified version back to GitHub.</li></ul><ul id="3329b2dd-7ff3-4680-8dc7-479aa439446b" class="bulleted-list"><li style="list-style-type:circle">License your modified version under any license (even proprietary), as long as you comply with the original terms.</li></ul></li></ul><ul id="ae1b676a-8a44-42ee-8cb6-229adfb56909" class="bulleted-list"><li style="list-style-type:disc"><strong>You must</strong>:<ul id="b282d07d-3fa1-44cf-8c1a-9a0cc8a1960e" class="bulleted-list"><li style="list-style-type:circle">Include the original copyright and license notice in your modified version.</li></ul><ul id="71030f9e-56c1-41cc-b11d-025c2306fb7b" class="bulleted-list"><li style="list-style-type:circle">Attribute the original authors when you redistribute the code.</li></ul></li></ul><p id="d8510b09-2913-403f-b201-141d3dbcc712" class=""><em><strong>You have lots of flexibility, but you must give credit to the original authors.</strong></em></p><h3 id="1d74b01a-500c-4509-9bd4-cb57ff5612c4" class=""><strong>Apache-2.0 License:</strong></h3><ul id="aae4d2a5-7f0e-4e01-a601-60dd7a879b3b" class="bulleted-list"><li style="list-style-type:disc"><strong>You can</strong>:<ul id="6c5990f1-8def-409b-8dd6-500d4dc62557" class="bulleted-list"><li style="list-style-type:circle">Freely use, modify, and distribute the code.</li></ul><ul id="5aa55560-0822-44cf-9c8e-1a883bc4dbaf" class="bulleted-list"><li style="list-style-type:circle">Push your modified version back to GitHub.</li></ul><ul id="4976c439-cee0-424b-9f79-de9ee58f7fed" class="bulleted-list"><li style="list-style-type:circle">License your modified version under any license (including Apache 2.0 or proprietary).</li></ul></li></ul><ul id="70588a24-c5c9-4b80-a85a-7820dd668f59" class="bulleted-list"><li style="list-style-type:disc"><strong>You must</strong>:<ul id="f9fef61a-04c2-484a-8a9d-a43d61f36090" class="bulleted-list"><li style="list-style-type:circle">Include the original license and a notice file indicating what changes you made.</li></ul><ul id="1e744107-a085-470c-8ad4-784c885b44cf" class="bulleted-list"><li style="list-style-type:circle">Attribute the original authors.</li></ul><ul id="f1a21ce7-29ac-4f36-af0d-e913a725f5c0" class="bulleted-list"><li style="list-style-type:circle">Grant a patent license for any patents you contribute to the project.</li></ul></li></ul><p id="67cafe78-1cef-4b0b-b632-6bdf7d159f35" class=""><em><strong>Similar to MIT, but with additional requirements such as documenting changes and granting patent rights.</strong></em></p><h1 id="f0a3646d-a4be-43da-93e2-ba502cdd82fd" class=""><strong>Comparative Analysis of Chat Applications</strong></h1><table id="f0a0e163-c7b3-4996-a239-88e766464655" class="simple-table"><tbody><tr id="6dc757d3-f1c4-4b6c-89d1-74b7547599c2"><td id="w^;g" class=""></td><td id="Za_^" class=""></td><td id="WiCC" class="" style="width:225px"><strong>Big-AGI</strong></td><td id="\`wN" class="" style="width:215.9875030517578px"><strong>open WebUI (Ollama WebUI)</strong></td><td id="WW=_" class="" style="width:235.16250610351562px"><strong>Hugging Face Chat UI</strong></td></tr><tr id="a4550a58-96d4-4f10-8087-4af5d755c3c1"><td id="w^;g" class=""><strong>GitHub Stats</strong></td><td id="Za_^" class=""><em>GitHub URL</em></td><td id="WiCC" class="" style="width:225px"></td><td id="\`wN" class="" style="width:215.9875030517578px"></td><td id="WW=_" class="" style="width:235.16250610351562px"></td></tr><tr id="b8981b65-2c17-4018-80d6-5f45fddf69b5"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>GitHub Stars</em></td><td id="WiCC" class="" style="width:225px">5.3K Stars</td><td id="\`wN" class="" style="width:215.9875030517578px">40.7K Stars</td><td id="WW=_" class="" style="width:235.16250610351562px">7.3K Stars</td></tr><tr id="8c5cf419-20d6-4d3f-8662-49969af4ab95"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>License</em></td><td id="WiCC" class="" style="width:225px">MIT License</td><td id="\`wN" class="" style="width:215.9875030517578px">MIT License</td><td id="WW=_" class="" style="width:235.16250610351562px">Apache-2.0 License</td></tr><tr id="4a7ed7e6-8a95-4eee-8ac2-1ee6d72f7b53"><td id="w^;g" class=""><strong>Usability</strong></td><td id="Za_^" class=""><em>Ease of Navigation</em></td><td id="WiCC" class="" style="width:225px"> 3.5/5 – A bit crowded, but manageable</td><td id="\`wN" class="" style="width:215.9875030517578px">5/5 – Intuitive and logical layout</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Simple, clear layout but requires some familiarization</td></tr><tr id="a5893af1-4839-4344-b21e-0cf3e2481772"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>Intuitiveness</em></td><td id="WiCC" class="" style="width:225px">4/5 – Functional, but requires user effort to understand</td><td id="\`wN" class="" style="width:215.9875030517578px">5/5 – Very intuitive, minimal clicks required</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – quite intuitive</td></tr><tr id="7f746fbf-4ee4-47b3-9091-fcfe54ab8c15"><td id="w^;g" class=""><strong>Aesthetic Design</strong></td><td id="Za_^" class=""><em>Visual Appeal</em></td><td id="WiCC" class="" style="width:225px">3.5/5 – Less minimalistic, and not very modern</td><td id="\`wN" class="" style="width:215.9875030517578px">4.5/5 – Clean, modern, appealing</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Good visual appeal but less sleek</td></tr><tr id="ebb1a278-aa1a-4900-a813-62db39c9132f"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>Consistency</em></td><td id="WiCC" class="" style="width:225px">4/5 – Mostly consistent, but some elements differ across pages</td><td id="\`wN" class="" style="width:215.9875030517578px">5/5 – Highly consistent across interactions</td><td id="WW=_" class="" style="width:235.16250610351562px">4.5/5 – Well-maintained consistency</td></tr><tr id="942d33f8-73b7-46ac-af69-3e2351276936"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>Color Scheme</em></td><td id="WiCC" class="" style="width:225px">3/5 – Simple, could use better contrast</td><td id="\`wN" class="" style="width:215.9875030517578px">5/5 – Vibrant and well-balanced colors</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Good but a bit heavy on bright tones</td></tr><tr id="0137ed7a-615b-4a00-9ee9-da34777e1031"><td id="w^;g" class=""><strong>Responsiveness</strong></td><td id="Za_^" class=""><em>Speed of Interaction</em></td><td id="WiCC" class="" style="width:225px">4/5 – Decent speed</td><td id="\`wN" class="" style="width:215.9875030517578px">5/5 – Extremely fast and responsive</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Smooth but can lag with heavy content</td></tr><tr id="fed770d1-b6f3-45ab-9b45-0a79ca28c5bb"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>Performance on Different Devices</em></td><td id="WiCC" class="" style="width:225px">4/5 – Works well on most devices, but slower on mobile</td><td id="\`wN" class="" style="width:215.9875030517578px">4.5/5 – Optimized for multiple devices</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Mostly responsive but may lag on older phones</td></tr><tr id="4fb07acd-fe24-4887-9474-25bda2b6b7fc"><td id="w^;g" class=""><strong>Accessibility</strong></td><td id="Za_^" class=""><em>Compatibility with Assistive Technologies</em></td><td id="WiCC" class="" style="width:225px">4/5 – Decent support on accessibility</td><td id="\`wN" class="" style="width:215.9875030517578px">4/5 – Good compatibility with screen readers. Has text-to-speech and speech-to-text assistance.</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Decent focus on accessibility</td></tr><tr id="4fb1f733-d0d4-477e-a85b-1ae075fe4a6b"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>Color Blindness Considerations</em></td><td id="WiCC" class="" style="width:225px">3/5 – Lacks sufficient contrast options</td><td id="\`wN" class="" style="width:215.9875030517578px">4/5 – Good contrast, accessible color scheme</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Generally good, with a few tweaks needed</td></tr><tr id="7d18d0b4-a00a-4fb1-a9c6-efeeee40a7d2"><td id="w^;g" class=""><strong>Consistency and Standards</strong></td><td id="Za_^" class=""><em>Familiarity</em></td><td id="WiCC" class="" style="width:225px">4/5 – Somewhat familiar, with basic UI principles</td><td id="\`wN" class="" style="width:215.9875030517578px">5/5 – Feels familiar, based on standard UI patterns</td><td id="WW=_" class="" style="width:235.16250610351562px">4.5/5 – Mostly intuitive with some custom elements</td></tr><tr id="88b2c1a7-0753-42c3-9159-bc345c0fb28c"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>Predictability</em></td><td id="WiCC" class="" style="width:225px">4/5 – Predictable but with minor inconsistencies</td><td id="\`wN" class="" style="width:215.9875030517578px">5/5 – Very predictable, no surprises</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Mostly predictable, but some features are hidden</td></tr><tr id="60dd5b40-ba86-43a0-abb7-4efcca099107"><td id="w^;g" class=""><strong>Error Handling</strong></td><td id="Za_^" class=""><em>Clarity of Error Messages</em></td><td id="WiCC" class="" style="width:225px">3.5/5 – Could be more descriptive</td><td id="\`wN" class="" style="width:215.9875030517578px">4.5/5 – Clear and helpful messages</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Clear, but sometimes vague instructions</td></tr><tr id="7bd68ed6-fba9-49e5-aa50-f936a0df8360"><td id="w^;g" class=""><strong>Customization Options</strong></td><td id="Za_^" class=""><em>Personalization</em></td><td id="WiCC" class="" style="width:225px">4/5 – Customizable to some extent</td><td id="\`wN" class="" style="width:215.9875030517578px">4/5 – Allows for some user customization</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Customizable to some extent</td></tr><tr id="d1328efb-74a7-4682-8123-b9bc290fcbae"><td id="w^;g" class=""><strong>Security and Privacy Features</strong></td><td id="Za_^" class=""><em>Privacy Options</em></td><td id="WiCC" class="" style="width:225px">3.5/5 – Basic privacy controls</td><td id="\`wN" class="" style="width:215.9875030517578px">4.5/5 – Strong privacy features</td><td id="WW=_" class="" style="width:235.16250610351562px">4/5 – Adequate privacy options, clearly outlined</td></tr><tr id="7ee5379f-269a-4a92-9ad8-127077b14c67"><td id="w^;g" class=""></td><td id="Za_^" class=""><em>Security Indicators</em></td><td id="WiCC" class="" style="width:225px">4/5 – Adequate but not prominent</td><td id="\`wN" class="" style="width:215.9875030517578px">4.5/5 – Strong security cues</td><td id="WW=_" class="" style="width:235.16250610351562px">4.5/5 – Good security features, clear indicators</td></tr></tbody></table><p id="ee42cfb5-b149-4fe7-b5d8-295a83f73f3e" class="">
+</p><p id="17dedb67-a071-44ba-bc5c-1097023ed24e" class="">SUMMARY</p><ul id="9c8f607b-4032-409f-888d-c4541074c7b8" class="bulleted-list"><li style="list-style-type:disc"><strong>Big-AGI</strong> is functional and mostly consistent but could improve in areas like visual appeal, color scheme, and accessibility.</li></ul><ul id="e388083f-e1ac-436e-b67f-bfa9364795f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Open WebUI (Ollama)</strong> scores highly across all parameters, with intuitive design, strong performance, and good accessibility features.</li></ul><ul id="64284353-f418-481c-aee4-75cb669924cf" class="bulleted-list"><li style="list-style-type:disc"><strong>Hugging Face Chat UI</strong> is visually appealing and generally user-friendly but lacks user-accessibility and other parameters from user’s perspective. </li></ul><p id="6ca2a4d6-36b1-4499-a8b7-f6bcf9176b97" class="">
+</p><p id="d8bde261-18e7-47fd-b57e-f4cd86fb2c9b" class="">
+</p><p id="69b0a787-4d3d-40ce-bacc-f4aec93e3bda" class="">
+</p><p id="8dfb30aa-81de-4e7f-87e4-48a6e14b19c0" class="">
+</p><p id="9a9d8c03-3e75-4a2b-8da9-5193745e701d" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
